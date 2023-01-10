@@ -1,6 +1,6 @@
 package com.murerwa.rickandmortytesting.data.repositories
 
-import com.murerwa.rickandmortycompose.data.network.ApiClient
+import com.murerwa.rickandmortytesting.domain.network.ApiClient
 import com.murerwa.rickandmortytesting.domain.models.characters.CharacterItem
 import com.murerwa.rickandmortytesting.domain.models.characters.CharactersResponse
 import com.murerwa.rickandmortytesting.domain.network.BaseRepository

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.murerwa.rickandmortytesting.presentation.fragments.HomeFragment"
+        android:name="com.murerwa.rickandmortytesting.presentation.fragments.characters.Characters"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 </navigation>

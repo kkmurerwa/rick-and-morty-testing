@@ -1,4 +1,4 @@
-package com.murerwa.rickandmortycompose.data.network
+package com.murerwa.rickandmortytesting.domain.network
 
 import com.murerwa.rickandmortytesting.domain.models.characters.CharacterItem
 import com.murerwa.rickandmortytesting.domain.models.characters.CharactersResponse
