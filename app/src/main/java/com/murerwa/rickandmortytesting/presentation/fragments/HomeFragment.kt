@@ -2,7 +2,9 @@ package com.murerwa.rickandmortytesting.presentation.fragments
 
 import androidx.fragment.app.Fragment
 import com.murerwa.rickandmortytesting.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
 }
