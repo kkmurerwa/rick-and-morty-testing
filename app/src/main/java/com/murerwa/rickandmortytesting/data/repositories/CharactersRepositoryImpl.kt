@@ -6,8 +6,9 @@ import com.murerwa.rickandmortytesting.domain.models.characters.CharactersRespon
 import com.murerwa.rickandmortytesting.domain.network.BaseRepository
 import com.murerwa.rickandmortytesting.domain.network.NetworkResult
 import com.murerwa.rickandmortytesting.domain.repositories.CharactersRepository
+import javax.inject.Inject
 
-class CharactersRepositoryImpl(
+class CharactersRepositoryImpl @Inject constructor(
     private val apiClient: ApiClient
 ): CharactersRepository, BaseRepository() {
     override suspend fun getCharacters(page: Int): NetworkResult<CharactersResponse> {
