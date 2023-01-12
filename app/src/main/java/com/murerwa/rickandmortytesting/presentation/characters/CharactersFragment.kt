@@ -23,14 +23,12 @@ class CharactersFragment : Fragment(R.layout.fragment_characters) {
     }
 
     private fun setUpViews() {
-        binding.apply {
-            recyclerCharacters.adapter = CharactersAdapter(
-                characters = listOf(),
-                onClickListener = { character ->
-                    // Navigate to details fragment
-                }
-            )
-        }
+        binding.recyclerCharacters.adapter = CharactersAdapter(
+            characters = ArrayList(10),
+            onClickListener = { character ->
+                // Navigate to details fragment
+            }
+        )
     }
 
     override fun onDestroy() {
