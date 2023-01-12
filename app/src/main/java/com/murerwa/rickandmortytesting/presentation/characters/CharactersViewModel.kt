@@ -1,4 +1,4 @@
-package com.murerwa.rickandmortytesting.presentation.fragments.characters
+package com.murerwa.rickandmortytesting.presentation.characters
 
 import androidx.lifecycle.ViewModel
 
