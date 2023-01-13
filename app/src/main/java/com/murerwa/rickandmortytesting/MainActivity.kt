@@ -2,6 +2,9 @@ package com.murerwa.rickandmortytesting
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.R
 import com.murerwa.rickandmortytesting.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

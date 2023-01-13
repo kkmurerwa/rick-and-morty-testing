@@ -48,7 +48,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@android:color/holo_green_dark"
-            tools:text="Dead or Alive" />
+            android:text="Dead or Alive" />
 
         <TextView
             android:id="@+id/text_character_species"
@@ -57,7 +57,7 @@
             android:paddingVertical="5dp"
             android:textSize="22sp"
             android:textStyle="italic"
-            tools:text="Character Species" />
+            android:text="Character Species" />
 
     </LinearLayout>
 

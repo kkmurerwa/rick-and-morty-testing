@@ -1,8 +1,10 @@
 package com.murerwa.rickandmortytesting.data.module
 
 import com.jakewharton.espresso.OkHttp3IdlingResource
+import com.murerwa.rickandmortytesting.data.repositories.CharactersRepositoryImpl
 import com.murerwa.rickandmortytesting.domain.network.ApiClient
 import com.murerwa.rickandmortytesting.domain.network.Urls
+import com.murerwa.rickandmortytesting.domain.repositories.CharactersRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,6 +12,7 @@ import dagger.hilt.android.components.FragmentComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 val client = OkHttpClient()
 val idlingResource = OkHttp3IdlingResource.create("okhttp", client)
@@ -28,4 +31,8 @@ class RickAndMortyModule {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
+    @Provides
+    fun providesCharactersRepository(
+        apiClient: ApiClient
+    ): CharactersRepository = CharactersRepositoryImpl(apiClient)
 }
