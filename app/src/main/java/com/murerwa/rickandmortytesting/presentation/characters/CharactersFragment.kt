@@ -26,6 +26,9 @@ class CharactersFragment : Fragment(R.layout.fragment_characters) {
 
         _binding = FragmentCharactersBinding.bind(view)
 
+        val toolbar = binding.toolbar.root
+        toolbar.title = "Rick and Morty"
+
         fetchCharacters()
     }
 
