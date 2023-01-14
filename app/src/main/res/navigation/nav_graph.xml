@@ -3,11 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/characters_fragment">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/characters_fragment"
         android:name="com.murerwa.rickandmortytesting.presentation.characters.CharactersFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_characters" />
+
+    <fragment
+        android:id="@+id/locations_fragment"
+        android:name="com.murerwa.rickandmortytesting.LocationsFragment"
+        android:label="fragment_locations"
+        tools:layout="@layout/fragment_locations" />
+
+    <fragment
+        android:id="@+id/episodes_fragment"
+        android:name="com.murerwa.rickandmortytesting.EpisodesFragment"
+        android:label="fragment_episodes"
+        tools:layout="@layout/fragment_episodes" />
 </navigation>
