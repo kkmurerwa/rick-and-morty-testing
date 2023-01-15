@@ -3,9 +3,10 @@ package com.murerwa.rickandmortytesting.presentation.characters
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.murerwa.rickandmortytesting.domain.models.characters.CharactersResponse
-import com.murerwa.rickandmortytesting.domain.network.NetworkResult
-import com.murerwa.rickandmortytesting.domain.network.UIState
+import com.murerwa.rickandmortytesting.domain.models.common.ItemsResponse
+import com.murerwa.rickandmortytesting.data.network.NetworkResult
+import com.murerwa.rickandmortytesting.data.network.UIState
+import com.murerwa.rickandmortytesting.domain.models.characters.Character
 import com.murerwa.rickandmortytesting.domain.repositories.CharactersRepository
 import com.murerwa.rickandmortytesting.utils.readError
 import kotlinx.coroutines.launch
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class CharactersViewModel @Inject constructor(
     private val repository: CharactersRepository
 ) : ViewModel() {
-    val charactersResponse = MutableLiveData<UIState<CharactersResponse>>(UIState.Loading)
+    val charactersResponse = MutableLiveData<UIState<ItemsResponse<Character>>>(UIState.Loading)
 
     fun getCharacters() {
         viewModelScope.launch {

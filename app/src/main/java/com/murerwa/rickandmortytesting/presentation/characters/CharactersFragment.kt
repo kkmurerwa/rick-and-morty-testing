@@ -1,14 +1,11 @@
 package com.murerwa.rickandmortytesting.presentation.characters
 
 import android.os.Bundle
-import android.provider.Contacts.Intents.UI
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.murerwa.rickandmortytesting.R
 import com.murerwa.rickandmortytesting.databinding.FragmentCharactersBinding
-import com.murerwa.rickandmortytesting.domain.models.characters.CharacterItem
-import com.murerwa.rickandmortytesting.domain.network.UIState
+import com.murerwa.rickandmortytesting.data.network.UIState
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject

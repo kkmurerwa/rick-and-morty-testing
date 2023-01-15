@@ -2,8 +2,8 @@ package com.murerwa.rickandmortytesting.data.module
 
 import com.jakewharton.espresso.OkHttp3IdlingResource
 import com.murerwa.rickandmortytesting.data.repositories.CharactersRepositoryImpl
-import com.murerwa.rickandmortytesting.domain.network.ApiClient
-import com.murerwa.rickandmortytesting.domain.network.Urls
+import com.murerwa.rickandmortytesting.data.network.ApiClient
+import com.murerwa.rickandmortytesting.data.network.Urls
 import com.murerwa.rickandmortytesting.domain.repositories.CharactersRepository
 import dagger.Module
 import dagger.Provides

@@ -3,11 +3,10 @@ package com.murerwa.rickandmortytesting.domain.repositories
 import com.murerwa.rickandmortytesting.data.network.NetworkResult
 import com.murerwa.rickandmortytesting.domain.models.characters.Character
 import com.murerwa.rickandmortytesting.domain.models.common.ItemsResponse
+import com.murerwa.rickandmortytesting.domain.models.episodes.Episode
 
-interface CharactersRepository {
+interface EpisodesRepository {
 
-    suspend fun getCharacters(page: Int): NetworkResult<ItemsResponse<Character>>
-
-    suspend fun getCharacterDetails(characterId: Int): NetworkResult<Character>
+    suspend fun getEpisodes(page: Int): NetworkResult<ItemsResponse<Episode>>
 
 }
