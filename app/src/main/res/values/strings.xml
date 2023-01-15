@@ -5,4 +5,11 @@
     <string name="episodes">Episodes</string>
     <string name="locations">Locations</string>
     <string name="characters">Characters</string>
+
+    <!--  Network Error strings  -->
+    <string name="network_error_no_internet">There was a network error, please check your internet connection</string>
+    <string name="network_error_login_failed">There was an error logging in, please try again</string>
+    <string name="error_verify_otp">There was an error verifying OTP, please try again</string>
+    <string name="network_error_no_items_found">Sorry. We could not find the requested data</string>
+    <string name="network_error_request_not_completed">Sorry. We could not complete your request</string>
 </resources>
