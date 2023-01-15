@@ -1,4 +1,4 @@
-package com.murerwa.rickandmortytesting.domain.network
+package com.murerwa.rickandmortytesting.data.network
 
 import okhttp3.ResponseBody
 
