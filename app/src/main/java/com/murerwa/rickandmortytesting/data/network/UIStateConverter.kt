@@ -12,7 +12,7 @@ suspend fun <T> convertToUIState(
     onSuccess: (T) -> Unit = { }
 ): UIState<T> {
 
-    var error = errorMessage.ifEmpty {
+    val error = errorMessage.ifEmpty {
         app.getString(R.string.network_error_request_not_completed)
     }
 
