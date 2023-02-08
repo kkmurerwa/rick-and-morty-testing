@@ -5,7 +5,7 @@ import com.murerwa.rickandmortytesting.R
 import com.murerwa.rickandmortytesting.core.utils.readError
 import timber.log.Timber
 
-suspend fun <T> convertToUIState(
+fun <T> convertToUIState(
     response: NetworkResult<T>,
     app: Application,
     errorMessage: String = "",
