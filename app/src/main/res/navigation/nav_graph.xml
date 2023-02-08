@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/characters_fragment"
-        android:name="com.murerwa.rickandmortytesting.presentation.characters.CharactersFragment"
+        android:name="com.murerwa.rickandmortytesting.features.characters.presentation.CharactersFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_characters" />
 
     <fragment
         android:id="@+id/locations_fragment"
-        android:name="com.murerwa.rickandmortytesting.presentation.locations.LocationsFragment"
+        android:name="com.murerwa.rickandmortytesting.features.locations.presentation.LocationsFragment"
         android:label="fragment_locations"
         tools:layout="@layout/fragment_locations" />
 
     <fragment
         android:id="@+id/episodes_fragment"
-        android:name="com.murerwa.rickandmortytesting.presentation.episodes.EpisodesFragment"
+        android:name="com.murerwa.rickandmortytesting.features.episodes.presentation.EpisodesFragment"
         android:label="fragment_episodes"
         tools:layout="@layout/fragment_episodes" />
 </navigation>

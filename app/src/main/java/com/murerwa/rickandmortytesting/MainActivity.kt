@@ -2,14 +2,9 @@ package com.murerwa.rickandmortytesting
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.R
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.murerwa.rickandmortytesting.databinding.ActivityMainBinding
-import com.murerwa.rickandmortytesting.presentation.characters.CharactersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
