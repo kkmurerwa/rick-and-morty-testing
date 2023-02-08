@@ -4,5 +4,5 @@ object Urls {
     const val BASE_URL = "https://rickandmortyapi.com/api/"
     const val CHARACTERS = "character"
     const val EPISODES = "episode"
-    const val LOCATION = "location"
+    const val LOCATIONS = "location"
 }

@@ -2,7 +2,7 @@ package com.murerwa.rickandmortytesting.data.network
 
 import com.murerwa.rickandmortytesting.domain.models.episodes.Episode
 import com.murerwa.rickandmortytesting.domain.models.characters.Character
-import com.murerwa.rickandmortytesting.domain.models.characters.Location
+import com.murerwa.rickandmortytesting.domain.models.locations.Location
 import com.murerwa.rickandmortytesting.domain.models.common.ItemsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -19,12 +19,12 @@ interface ApiClient {
         @Path("id") id: Int
     ): Character
 
-    @GET
+    @GET(Urls.EPISODES)
     suspend fun getEpisodes(
         @Query("page") page: Int,
     ): ItemsResponse<Episode>
 
-    @GET
+    @GET(Urls.LOCATIONS)
     suspend fun getLocations(
         @Query("page") page: Int,
     ): ItemsResponse<Location>

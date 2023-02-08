@@ -7,18 +7,19 @@ import androidx.lifecycle.viewModelScope
 import com.murerwa.rickandmortytesting.R
 import com.murerwa.rickandmortytesting.data.network.UIState
 import com.murerwa.rickandmortytesting.data.network.convertToUIState
-import com.murerwa.rickandmortytesting.domain.models.characters.Location
+import com.murerwa.rickandmortytesting.domain.models.locations.Location
 import com.murerwa.rickandmortytesting.domain.models.common.ItemsResponse
 import com.murerwa.rickandmortytesting.domain.repositories.LocationsRepository
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LocationsViewModel(
+class LocationsViewModel @Inject constructor(
     private val app: Application,
     private val repository: LocationsRepository
 ): ViewModel() {
     val locationsResponse = MutableLiveData<UIState<ItemsResponse<Location>>>(UIState.Loading)
 
-    fun getEpisodes() = viewModelScope.launch {
+    fun getLocations() = viewModelScope.launch {
         locationsResponse.value = UIState.Loading
 
         val uiState = convertToUIState(

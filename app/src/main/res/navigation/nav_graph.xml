@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/locations_fragment"
-        android:name="com.murerwa.rickandmortytesting.LocationsFragment"
+        android:name="com.murerwa.rickandmortytesting.presentation.locations.LocationsFragment"
         android:label="fragment_locations"
         tools:layout="@layout/fragment_locations" />
 
     <fragment
         android:id="@+id/episodes_fragment"
-        android:name="com.murerwa.rickandmortytesting.EpisodesFragment"
+        android:name="com.murerwa.rickandmortytesting.presentation.episodes.EpisodesFragment"
         android:label="fragment_episodes"
         tools:layout="@layout/fragment_episodes" />
 </navigation>

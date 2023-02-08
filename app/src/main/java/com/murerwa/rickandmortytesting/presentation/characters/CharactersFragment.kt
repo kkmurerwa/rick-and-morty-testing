@@ -3,6 +3,8 @@ package com.murerwa.rickandmortytesting.presentation.characters
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import com.murerwa.rickandmortytesting.R
 import com.murerwa.rickandmortytesting.databinding.FragmentCharactersBinding
 import com.murerwa.rickandmortytesting.data.network.UIState

@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.murerwa.rickandmortytesting.R
+import com.murerwa.rickandmortytesting.data.network.UIState
 import com.murerwa.rickandmortytesting.databinding.FragmentEpisodesBinding
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class EpisodesFragment : Fragment(R.layout.fragment_episodes) {
     private var _binding: FragmentEpisodesBinding? = null
     private val binding get() = _binding!!
@@ -21,6 +24,31 @@ class EpisodesFragment : Fragment(R.layout.fragment_episodes) {
 
         val toolbar = binding.toolbar.root
         toolbar.title = "Episodes"
+
+        fetchEpisodes()
+    }
+
+    private fun fetchEpisodes() {
+        viewModel.getEpisodes()
+
+        viewModel.episodesResponse.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is UIState.Loading -> {}
+                is UIState.Success -> {
+                    val episodes = response.value.results
+
+                    binding.recyclerEpisodes.adapter = EpisodesAdapter(
+                        episodes = episodes,
+                        onClickListener = {
+                            // Navigate to details fragment
+                        }
+                    )
+                }
+                is UIState.Error -> {
+
+                }
+            }
+        }
     }
 
     override fun onDestroy() {
