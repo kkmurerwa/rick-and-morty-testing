@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.murerwa.rickandmortytesting.R
 import com.murerwa.rickandmortytesting.core.network.UIState
 import com.murerwa.rickandmortytesting.core.network.convertToUIState
-import com.murerwa.rickandmortytesting.features.locations.domain.models.Location
+import com.murerwa.rickandmortytesting.features.locations.domain.model.Location
 import com.murerwa.rickandmortytesting.core.models.ItemsResponse
 import com.murerwa.rickandmortytesting.features.locations.domain.repository.LocationsRepository
 import kotlinx.coroutines.launch

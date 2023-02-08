@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.murerwa.rickandmortytesting.databinding.ListItemLocationBinding
-import com.murerwa.rickandmortytesting.features.locations.domain.models.Location
+import com.murerwa.rickandmortytesting.features.locations.domain.model.Location
 
 class LocationsAdapter(
     private val locations: List<Location>,

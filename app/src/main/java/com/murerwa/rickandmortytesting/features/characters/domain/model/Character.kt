@@ -1,4 +1,4 @@
-package com.murerwa.rickandmortytesting.features.characters.domain.models
+package com.murerwa.rickandmortytesting.features.characters.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

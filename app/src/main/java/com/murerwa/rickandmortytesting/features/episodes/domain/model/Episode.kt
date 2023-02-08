@@ -1,4 +1,4 @@
-package com.murerwa.rickandmortytesting.features.episodes.domain.models
+package com.murerwa.rickandmortytesting.features.episodes.domain.model
 
 data class Episode(
     val air_date: String,

@@ -8,7 +8,7 @@ import com.murerwa.rickandmortytesting.R
 import com.murerwa.rickandmortytesting.core.network.UIState
 import com.murerwa.rickandmortytesting.core.network.convertToUIState
 import com.murerwa.rickandmortytesting.core.models.ItemsResponse
-import com.murerwa.rickandmortytesting.features.episodes.domain.models.Episode
+import com.murerwa.rickandmortytesting.features.episodes.domain.model.Episode
 import com.murerwa.rickandmortytesting.features.episodes.domain.repositories.EpisodesRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject

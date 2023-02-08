@@ -1,7 +1,7 @@
 package com.murerwa.rickandmortytesting.features.characters.data.repositories
 
 import com.murerwa.rickandmortytesting.core.network.ApiClient
-import com.murerwa.rickandmortytesting.features.characters.domain.models.Character
+import com.murerwa.rickandmortytesting.features.characters.domain.model.Character
 import com.murerwa.rickandmortytesting.core.models.ItemsResponse
 import com.murerwa.rickandmortytesting.core.network.BaseRepository
 import com.murerwa.rickandmortytesting.core.network.NetworkResult

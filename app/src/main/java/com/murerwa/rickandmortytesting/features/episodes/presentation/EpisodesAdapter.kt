@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.murerwa.rickandmortytesting.databinding.ListItemEpisodeBinding
-import com.murerwa.rickandmortytesting.features.episodes.domain.models.Episode
+import com.murerwa.rickandmortytesting.features.episodes.domain.model.Episode
 
 class EpisodesAdapter(
     private val episodes: List<Episode>,

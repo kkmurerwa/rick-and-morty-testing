@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.murerwa.rickandmortytesting.databinding.ListItemCharacterBinding
-import com.murerwa.rickandmortytesting.features.characters.domain.models.Character
+import com.murerwa.rickandmortytesting.features.characters.domain.model.Character
 import com.murerwa.rickandmortytesting.core.utils.capitalizeString
 import com.murerwa.rickandmortytesting.core.utils.loadImage
 

@@ -1,4 +1,4 @@
-package com.murerwa.rickandmortytesting.features.locations.domain.models
+package com.murerwa.rickandmortytesting.features.locations.domain.model
 
 data class Location(
     val created: String,
