@@ -4,8 +4,8 @@ import okhttp3.ResponseBody
 import org.json.JSONObject
 import java.util.*
 
-fun ResponseBody?.readError(): String? {
-    if (this == null) return null
+fun ResponseBody?.readError(): String {
+    if (this == null) return "unexpected error"
     return try {
         var returnStringError = ""
         val jsonObj = JSONObject(this.charStream().readText())
@@ -24,7 +24,7 @@ fun ResponseBody?.readError(): String? {
         }
         returnStringError.trim()
     } catch (_: Exception) {
-        null
+        "unexpected error"
     }
 }
 
