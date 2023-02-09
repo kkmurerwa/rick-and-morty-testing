@@ -1,7 +1,7 @@
 package com.murerwa.rickandmortytesting.core.di
 
 import com.jakewharton.espresso.OkHttp3IdlingResource
-import com.murerwa.rickandmortytesting.features.characters.data.repositories.CharactersRepositoryImpl
+import com.murerwa.rickandmortytesting.features.characters.data.repository.CharactersRepositoryImpl
 import com.murerwa.rickandmortytesting.core.network.ApiClient
 import com.murerwa.rickandmortytesting.core.network.Urls
 import com.murerwa.rickandmortytesting.features.episodes.data.repository.EpisodesRepositoryImpl
