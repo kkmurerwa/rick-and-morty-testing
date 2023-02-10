@@ -1,8 +1,9 @@
 package com.murerwa.rickandmortytesting.core.network
 
 import android.app.Application
+import com.murerwa.rickandmortytesting.core.models.ItemsResponse
+import com.murerwa.rickandmortytesting.features.characters.domain.model.Character
 import com.murerwa.rickandmortytesting.features.characters.domain.repositories.CharactersRepository
-import com.murerwa.rickandmortytesting.fixtures.tCharactersResponse
 import com.murerwa.rickandmortytesting.utils.BaseUnitTest
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
@@ -17,11 +18,12 @@ import org.junit.Test
 class UIStateConverterShould: BaseUnitTest() {
     private val mockRepository: CharactersRepository = mock()
     private val mockApp: Application = mock()
+    private val mockResponse = mock<ItemsResponse<Character>>()
 
     @Test
     fun returnUIStateSuccessObjectWhenConvertToUiStateCalledWithNetworkSuccessObject() = runTest {
         whenever(mockRepository.getCharacters(any())).thenReturn(
-            NetworkResult.Success(tCharactersResponse)
+            NetworkResult.Success(mockResponse)
         )
 
         val uiState = convertToUIState(

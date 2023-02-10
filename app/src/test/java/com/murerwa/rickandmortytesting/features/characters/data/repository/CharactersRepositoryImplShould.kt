@@ -1,11 +1,11 @@
 package com.murerwa.rickandmortytesting.features.characters.data.repository
 
+import com.murerwa.rickandmortytesting.core.models.ItemsResponse
 import com.murerwa.rickandmortytesting.core.network.ApiClient
 import com.murerwa.rickandmortytesting.core.network.NetworkResult
 import com.murerwa.rickandmortytesting.features.characters.domain.repositories.CharactersRepository
 import com.murerwa.rickandmortytesting.utils.BaseUnitTest
 import com.murerwa.rickandmortytesting.features.characters.domain.model.Character
-import com.murerwa.rickandmortytesting.fixtures.tCharactersResponse
 import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -16,10 +16,11 @@ import org.junit.Test
 class CharactersRepositoryImplShould: BaseUnitTest() {
     private val apiClient = mock<ApiClient>()
     private val repository = CharactersRepositoryImpl(apiClient)
+    private val mockResponse = mock<ItemsResponse<Character>>()
 
     @Test
     fun invokeApiClientGetCharacters() = runTest {
-        whenever(apiClient.getCharacters(any())).thenReturn(tCharactersResponse)
+        whenever(apiClient.getCharacters(any())).thenReturn(mockResponse)
 
         repository.getCharacters(1)
 
@@ -28,11 +29,11 @@ class CharactersRepositoryImplShould: BaseUnitTest() {
 
     @Test
     fun getCharactersFromRepositoryAsNetworkResultInstance() = runTest {
-        whenever(apiClient.getCharacters(any())).thenReturn(tCharactersResponse)
+        whenever(apiClient.getCharacters(any())).thenReturn(mockResponse)
 
         val actual = repository.getCharacters(1)
 
-        assertEquals(NetworkResult.Success(tCharactersResponse), actual)
+        assertEquals(NetworkResult.Success(mockResponse), actual)
     }
 
     @Test
