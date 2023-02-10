@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Location(
+data class CharacterLocation(
     val name: String,
     val url: String
 ): Parcelable
