@@ -26,11 +26,20 @@ class CharactersViewModelShould: BaseUnitTest() {
     private val mockInfo = mock<Info>()
     private val mockCharactersList = listOf<Character>(mock())
 
-    private val mockNetworkResponse =
+    private val mockNetworkResponseSuccess =
         NetworkResult.Success(ItemsResponse(mockInfo, mockCharactersList))
 
-    private val mockLiveDataResponse =
+    private val mockNetworkResponseFailure = NetworkResult.Failure(
+        isNetworkError = false,
+        errorCode = 10,
+        errorBody = null
+    )
+
+    private val mockLiveDataResponseSuccess =
         UIState.Success(ItemsResponse(mockInfo, mockCharactersList))
+
+    private val mockLiveDataResponseFailure =
+        UIState.Error("test", false)
 
     @Test
     fun getCharacters() = runTest {
@@ -38,13 +47,31 @@ class CharactersViewModelShould: BaseUnitTest() {
 
         viewModel.getCharacters()
 
-        assertEquals(mockLiveDataResponse, viewModel.charactersResponse.getValueForTest())
+        assertEquals(mockLiveDataResponseSuccess, viewModel.charactersResponse.getValueForTest())
+    }
+
+    @Test
+    fun getCharactersError() = runTest {
+        val viewModel = mockErrorCase()
+
+        viewModel.getCharacters()
+
+        assertEquals(mockLiveDataResponseFailure, viewModel.charactersResponse.getValueForTest())
     }
 
     private fun mockSuccessfulCase(): CharactersViewModel {
         runBlocking {
             whenever(app.getString(R.string.network_error_no_items_found)).thenReturn("test")
-            whenever(repository.getCharacters(any())).thenReturn(mockNetworkResponse)
+            whenever(repository.getCharacters(any())).thenReturn(mockNetworkResponseSuccess)
+        }
+
+        return CharactersViewModel(app, repository)
+    }
+
+    private fun mockErrorCase(): CharactersViewModel {
+        runBlocking {
+            whenever(app.getString(R.string.network_error_no_items_found)).thenReturn("test")
+            whenever(repository.getCharacters(any())).thenReturn(mockNetworkResponseFailure)
         }
 
         return CharactersViewModel(app, repository)

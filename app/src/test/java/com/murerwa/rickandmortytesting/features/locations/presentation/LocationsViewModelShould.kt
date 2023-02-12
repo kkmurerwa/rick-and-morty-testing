@@ -6,9 +6,6 @@ import com.murerwa.rickandmortytesting.core.models.Info
 import com.murerwa.rickandmortytesting.core.models.ItemsResponse
 import com.murerwa.rickandmortytesting.core.network.NetworkResult
 import com.murerwa.rickandmortytesting.core.network.UIState
-import com.murerwa.rickandmortytesting.features.characters.domain.model.Character
-import com.murerwa.rickandmortytesting.features.characters.domain.repositories.CharactersRepository
-import com.murerwa.rickandmortytesting.features.characters.presentation.CharactersViewModel
 import com.murerwa.rickandmortytesting.features.locations.domain.model.Location
 import com.murerwa.rickandmortytesting.features.locations.domain.repository.LocationsRepository
 import com.murerwa.rickandmortytesting.utils.BaseUnitTest
@@ -29,25 +26,52 @@ class LocationsViewModelShould: BaseUnitTest() {
     private val mockInfo = mock<Info>()
     private val mockCharactersList = listOf<Location>(mock())
 
-    private val mockNetworkResponse =
+    private val mockNetworkResponseSuccess =
         NetworkResult.Success(ItemsResponse(mockInfo, mockCharactersList))
 
-    private val mockLiveDataResponse =
+    private val mockNetworkResponseFailure = NetworkResult.Failure(
+        isNetworkError = false,
+        errorCode = 10,
+        errorBody = null
+    )
+
+    private val mockLiveDataResponseSuccess =
         UIState.Success(ItemsResponse(mockInfo, mockCharactersList))
 
+    private val mockLiveDataResponseFailure =
+        UIState.Error("test", false)
+
     @Test
-    fun getLocations() = runTest {
+    fun getLocationsSuccess() = runTest {
         val viewModel = mockSuccessfulCase()
 
         viewModel.getLocations()
 
-        assertEquals(mockLiveDataResponse, viewModel.locationsResponse.getValueForTest())
+        assertEquals(mockLiveDataResponseSuccess, viewModel.locationsResponse.getValueForTest())
+    }
+
+    @Test
+    fun getLocationsFailure() = runTest {
+        val viewModel = mockErrorCase()
+
+        viewModel.getLocations()
+
+        assertEquals(mockLiveDataResponseFailure, viewModel.locationsResponse.getValueForTest())
     }
 
     private fun mockSuccessfulCase(): LocationsViewModel {
         runBlocking {
             whenever(app.getString(R.string.network_error_no_items_found)).thenReturn("test")
-            whenever(repository.getLocations(any())).thenReturn(mockNetworkResponse)
+            whenever(repository.getLocations(any())).thenReturn(mockNetworkResponseSuccess)
+        }
+
+        return LocationsViewModel(app, repository)
+    }
+
+    private fun mockErrorCase(): LocationsViewModel {
+        runBlocking {
+            whenever(app.getString(R.string.network_error_no_items_found)).thenReturn("test")
+            whenever(repository.getLocations(any())).thenReturn(mockNetworkResponseFailure)
         }
 
         return LocationsViewModel(app, repository)

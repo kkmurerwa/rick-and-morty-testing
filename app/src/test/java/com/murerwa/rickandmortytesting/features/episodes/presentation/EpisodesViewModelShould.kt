@@ -26,25 +26,53 @@ class EpisodesViewModelShould: BaseUnitTest() {
     private val mockInfo = mock<Info>()
     private val mockEpisodesList = listOf<Episode>(mock())
 
-    private val mockNetworkResponse =
+    private val mockNetworkResponseSuccess =
         NetworkResult.Success(ItemsResponse(mockInfo, mockEpisodesList))
 
-    private val mockLiveDataResponse =
+    private val mockNetworkResponseFailure = NetworkResult.Failure(
+        isNetworkError = false,
+        errorCode = 10,
+        errorBody = null
+    )
+
+    private val mockLiveDataResponseSuccess =
         UIState.Success(ItemsResponse(mockInfo, mockEpisodesList))
 
+    private val mockLiveDataResponseFailure =
+        UIState.Error("test", false)
+
+
     @Test
-    fun getEpisodes() = runTest {
+    fun getEpisodesSuccess() = runTest {
         val viewModel = mockSuccessfulCase()
 
         viewModel.getEpisodes()
 
-        assertEquals(mockLiveDataResponse, viewModel.episodesResponse.getValueForTest())
+        assertEquals(mockLiveDataResponseSuccess, viewModel.episodesResponse.getValueForTest())
+    }
+
+    @Test
+    fun getEpisodesError() = runTest {
+        val viewModel = mockErrorCase()
+
+        viewModel.getEpisodes()
+
+        assertEquals(mockLiveDataResponseFailure, viewModel.episodesResponse.getValueForTest())
     }
 
     private fun mockSuccessfulCase(): EpisodesViewModel {
         runBlocking {
             whenever(app.getString(R.string.network_error_no_items_found)).thenReturn("test")
-            whenever(repository.getEpisodes(any())).thenReturn(mockNetworkResponse)
+            whenever(repository.getEpisodes(any())).thenReturn(mockNetworkResponseSuccess)
+        }
+
+        return EpisodesViewModel(app, repository)
+    }
+
+    private fun mockErrorCase(): EpisodesViewModel {
+        runBlocking {
+            whenever(app.getString(R.string.network_error_no_items_found)).thenReturn("test")
+            whenever(repository.getEpisodes(any())).thenReturn(mockNetworkResponseFailure)
         }
 
         return EpisodesViewModel(app, repository)
