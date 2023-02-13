@@ -3,12 +3,7 @@ package com.murerwa.rickandmortytesting.features.episodes.data.api
 import com.google.gson.Gson
 import com.murerwa.rickandmortytesting.core.models.ItemsResponse
 import com.murerwa.rickandmortytesting.core.network.NetworkResult
-import com.murerwa.rickandmortytesting.features.characters.data.api.CharactersApiClient
-import com.murerwa.rickandmortytesting.features.characters.data.repository.CharactersRepositoryImpl
-import com.murerwa.rickandmortytesting.features.episodes.data.api.EpisodesApiClient
 import com.murerwa.rickandmortytesting.features.episodes.data.repository.EpisodesRepositoryImpl
-import com.murerwa.rickandmortytesting.features.locations.data.api.LocationsApiClient
-import com.murerwa.rickandmortytesting.features.locations.data.repository.LocationsRepositoryImpl
 import com.murerwa.rickandmortytesting.fixtures.*
 import com.murerwa.rickandmortytesting.utils.BaseUnitTest
 import com.murerwa.rickandmortytesting.utils.RetrofitHelper
