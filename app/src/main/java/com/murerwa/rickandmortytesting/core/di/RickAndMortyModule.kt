@@ -2,7 +2,6 @@ package com.murerwa.rickandmortytesting.core.di
 
 import com.jakewharton.espresso.OkHttp3IdlingResource
 import com.murerwa.rickandmortytesting.features.characters.data.repository.CharactersRepositoryImpl
-import com.murerwa.rickandmortytesting.core.network.ApiClient
 import com.murerwa.rickandmortytesting.core.network.Urls
 import com.murerwa.rickandmortytesting.features.characters.data.api.CharactersApiClient
 import com.murerwa.rickandmortytesting.features.episodes.data.repository.EpisodesRepositoryImpl
@@ -26,10 +25,6 @@ val idlingResource = OkHttp3IdlingResource.create("okhttp", client)
 @Module
 @InstallIn(FragmentComponent::class)
 class RickAndMortyModule {
-    @Provides
-    fun apiClient(retrofit: Retrofit): ApiClient =
-        retrofit.create(ApiClient::class.java)
-
     @Provides
     fun charactersApiClient(retrofit: Retrofit): CharactersApiClient =
         retrofit.create(CharactersApiClient::class.java)

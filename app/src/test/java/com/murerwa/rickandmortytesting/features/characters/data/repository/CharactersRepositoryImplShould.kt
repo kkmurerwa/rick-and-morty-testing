@@ -1,10 +1,8 @@
 package com.murerwa.rickandmortytesting.features.characters.data.repository
 
 import com.murerwa.rickandmortytesting.core.models.ItemsResponse
-import com.murerwa.rickandmortytesting.core.network.ApiClient
 import com.murerwa.rickandmortytesting.core.network.NetworkResult
 import com.murerwa.rickandmortytesting.features.characters.data.api.CharactersApiClient
-import com.murerwa.rickandmortytesting.features.characters.domain.repositories.CharactersRepository
 import com.murerwa.rickandmortytesting.utils.BaseUnitTest
 import com.murerwa.rickandmortytesting.features.characters.domain.model.Character
 import com.nhaarman.mockitokotlin2.*

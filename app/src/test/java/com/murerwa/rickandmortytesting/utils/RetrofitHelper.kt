@@ -1,6 +1,5 @@
 package com.murerwa.rickandmortytesting.utils
 
-import com.murerwa.rickandmortytesting.core.network.ApiClient
 import com.murerwa.rickandmortytesting.features.characters.data.api.CharactersApiClient
 import com.murerwa.rickandmortytesting.features.episodes.data.api.EpisodesApiClient
 import com.murerwa.rickandmortytesting.features.locations.data.api.LocationsApiClient

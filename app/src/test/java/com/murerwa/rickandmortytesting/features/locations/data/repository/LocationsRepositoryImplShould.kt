@@ -1,7 +1,6 @@
 package com.murerwa.rickandmortytesting.features.locations.data.repository
 
 import com.murerwa.rickandmortytesting.core.models.ItemsResponse
-import com.murerwa.rickandmortytesting.core.network.ApiClient
 import com.murerwa.rickandmortytesting.core.network.NetworkResult
 import com.murerwa.rickandmortytesting.features.locations.data.api.LocationsApiClient
 import com.murerwa.rickandmortytesting.features.locations.domain.model.Location

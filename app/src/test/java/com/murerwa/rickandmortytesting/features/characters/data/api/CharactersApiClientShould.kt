@@ -1,7 +1,8 @@
-package com.murerwa.rickandmortytesting.core.network
+package com.murerwa.rickandmortytesting.features.characters.data.api
 
 import com.google.gson.Gson
 import com.murerwa.rickandmortytesting.core.models.ItemsResponse
+import com.murerwa.rickandmortytesting.core.network.NetworkResult
 import com.murerwa.rickandmortytesting.features.characters.data.api.CharactersApiClient
 import com.murerwa.rickandmortytesting.features.characters.data.repository.CharactersRepositoryImpl
 import com.murerwa.rickandmortytesting.features.episodes.data.api.EpisodesApiClient
@@ -22,19 +23,13 @@ import org.junit.Test
 import java.net.HttpURLConnection
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class ApiClientShould: BaseUnitTest() {
+class CharactersApiClientShould: BaseUnitTest() {
     private val characters = listOf(tCharacter)
-    private val episodes = listOf(tEpisode)
-    private val locations = listOf(tLocation)
 
     private lateinit var testCharactersApis: CharactersApiClient
-    private lateinit var testEpisodesApis: EpisodesApiClient
-    private lateinit var testLocationsApis: LocationsApiClient
 
     private lateinit var mockWebServer: MockWebServer
     private lateinit var charactersRepository: CharactersRepositoryImpl
-    private lateinit var episodesRepository: EpisodesRepositoryImpl
-    private lateinit var locationsRepository: LocationsRepositoryImpl
 
     @Before
     fun setUp() {
@@ -42,12 +37,8 @@ class ApiClientShould: BaseUnitTest() {
         mockWebServer.start()
 
         testCharactersApis = RetrofitHelper.testCharactersApiInstance(mockWebServer.url("/").toString())
-        testEpisodesApis = RetrofitHelper.testEpisodesApiInstance(mockWebServer.url("/").toString())
-        testLocationsApis = RetrofitHelper.testLocationsApiInstance(mockWebServer.url("/").toString())
 
         charactersRepository = CharactersRepositoryImpl(testCharactersApis)
-        episodesRepository = EpisodesRepositoryImpl(testEpisodesApis)
-        locationsRepository = LocationsRepositoryImpl(testLocationsApis)
     }
 
     @After
@@ -96,54 +87,6 @@ class ApiClientShould: BaseUnitTest() {
 
         val actualResponse =
             charactersRepository.getCharacterDetails(1) as NetworkResult.Failure
-        assertEquals(tExpectedError.errorCode, actualResponse.errorCode)
-        assertEquals(tExpectedError.isNetworkError, actualResponse.isNetworkError)
-    }
-
-    @Test
-    fun returnEpisodesIfGetEpisodesSuccess() = runTest {
-        val expected = ItemsResponse(
-            info = tInfo,
-            results = episodes
-        )
-
-        setSuccessWebserverResponse(expected)
-
-        val actualResponse =
-            episodesRepository.getEpisodes(1) as NetworkResult.Success
-        assertEquals(NetworkResult.Success(expected), actualResponse)
-    }
-
-    @Test
-    fun returnErrorIfGetEpisodesFailed() = runTest {
-        setFailureWebserverResponse(tExpectedError)
-
-        val actualResponse =
-            episodesRepository.getEpisodes(1) as NetworkResult.Failure
-        assertEquals(tExpectedError.errorCode, actualResponse.errorCode)
-        assertEquals(tExpectedError.isNetworkError, actualResponse.isNetworkError)
-    }
-
-    @Test
-    fun returnLocationsIfGetLocationsSuccess() = runTest {
-        val expected = ItemsResponse(
-            info = tInfo,
-            results = locations
-        )
-
-        setSuccessWebserverResponse(expected)
-
-        val actualResponse =
-            locationsRepository.getLocations(1) as NetworkResult.Success
-        assertEquals(NetworkResult.Success(expected), actualResponse)
-    }
-
-    @Test
-    fun returnErrorIfGetLocationsFailed() = runTest {
-        setFailureWebserverResponse(tExpectedError)
-
-        val actualResponse =
-            locationsRepository.getLocations(1) as NetworkResult.Failure
         assertEquals(tExpectedError.errorCode, actualResponse.errorCode)
         assertEquals(tExpectedError.isNetworkError, actualResponse.isNetworkError)
     }
