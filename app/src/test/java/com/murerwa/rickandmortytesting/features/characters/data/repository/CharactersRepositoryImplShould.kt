@@ -3,6 +3,7 @@ package com.murerwa.rickandmortytesting.features.characters.data.repository
 import com.murerwa.rickandmortytesting.core.models.ItemsResponse
 import com.murerwa.rickandmortytesting.core.network.ApiClient
 import com.murerwa.rickandmortytesting.core.network.NetworkResult
+import com.murerwa.rickandmortytesting.features.characters.data.api.CharactersApiClient
 import com.murerwa.rickandmortytesting.features.characters.domain.repositories.CharactersRepository
 import com.murerwa.rickandmortytesting.utils.BaseUnitTest
 import com.murerwa.rickandmortytesting.features.characters.domain.model.Character
@@ -14,7 +15,7 @@ import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class CharactersRepositoryImplShould: BaseUnitTest() {
-    private val apiClient = mock<ApiClient>()
+    private val apiClient = mock<CharactersApiClient>()
     private val repository = CharactersRepositoryImpl(apiClient)
     private val mockResponse = mock<ItemsResponse<Character>>()
 

@@ -6,7 +6,7 @@ import com.murerwa.rickandmortytesting.features.locations.domain.model.Location
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface LocationsApis {
+interface LocationsApiClient {
     @GET(Urls.LOCATIONS)
     suspend fun getLocations(
         @Query("page") page: Int,

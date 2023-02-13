@@ -6,7 +6,7 @@ import com.murerwa.rickandmortytesting.features.episodes.domain.model.Episode
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface EpisodesApis {
+interface EpisodesApiClient {
     @GET(Urls.EPISODES)
     suspend fun getEpisodes(
         @Query("page") page: Int,

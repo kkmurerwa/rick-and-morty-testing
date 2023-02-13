@@ -2,8 +2,11 @@ package com.murerwa.rickandmortytesting.core.network
 
 import com.google.gson.Gson
 import com.murerwa.rickandmortytesting.core.models.ItemsResponse
+import com.murerwa.rickandmortytesting.features.characters.data.api.CharactersApiClient
 import com.murerwa.rickandmortytesting.features.characters.data.repository.CharactersRepositoryImpl
+import com.murerwa.rickandmortytesting.features.episodes.data.api.EpisodesApiClient
 import com.murerwa.rickandmortytesting.features.episodes.data.repository.EpisodesRepositoryImpl
+import com.murerwa.rickandmortytesting.features.locations.data.api.LocationsApiClient
 import com.murerwa.rickandmortytesting.features.locations.data.repository.LocationsRepositoryImpl
 import com.murerwa.rickandmortytesting.fixtures.*
 import com.murerwa.rickandmortytesting.utils.BaseUnitTest
@@ -24,7 +27,10 @@ class ApiClientShould: BaseUnitTest() {
     private val episodes = listOf(tEpisode)
     private val locations = listOf(tLocation)
 
-    private lateinit var testApis: ApiClient
+    private lateinit var testCharactersApis: CharactersApiClient
+    private lateinit var testEpisodesApis: EpisodesApiClient
+    private lateinit var testLocationsApis: LocationsApiClient
+
     private lateinit var mockWebServer: MockWebServer
     private lateinit var charactersRepository: CharactersRepositoryImpl
     private lateinit var episodesRepository: EpisodesRepositoryImpl
@@ -34,10 +40,14 @@ class ApiClientShould: BaseUnitTest() {
     fun setUp() {
         mockWebServer = MockWebServer()
         mockWebServer.start()
-        testApis = RetrofitHelper.testApiInstance(mockWebServer.url("/").toString())
-        charactersRepository = CharactersRepositoryImpl(testApis)
-        episodesRepository = EpisodesRepositoryImpl(testApis)
-        locationsRepository = LocationsRepositoryImpl(testApis)
+
+        testCharactersApis = RetrofitHelper.testCharactersApiInstance(mockWebServer.url("/").toString())
+        testEpisodesApis = RetrofitHelper.testEpisodesApiInstance(mockWebServer.url("/").toString())
+        testLocationsApis = RetrofitHelper.testLocationsApiInstance(mockWebServer.url("/").toString())
+
+        charactersRepository = CharactersRepositoryImpl(testCharactersApis)
+        episodesRepository = EpisodesRepositoryImpl(testEpisodesApis)
+        locationsRepository = LocationsRepositoryImpl(testLocationsApis)
     }
 
     @After

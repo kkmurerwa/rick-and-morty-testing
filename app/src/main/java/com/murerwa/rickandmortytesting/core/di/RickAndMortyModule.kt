@@ -4,10 +4,13 @@ import com.jakewharton.espresso.OkHttp3IdlingResource
 import com.murerwa.rickandmortytesting.features.characters.data.repository.CharactersRepositoryImpl
 import com.murerwa.rickandmortytesting.core.network.ApiClient
 import com.murerwa.rickandmortytesting.core.network.Urls
+import com.murerwa.rickandmortytesting.features.characters.data.api.CharactersApiClient
 import com.murerwa.rickandmortytesting.features.episodes.data.repository.EpisodesRepositoryImpl
 import com.murerwa.rickandmortytesting.features.locations.data.repository.LocationsRepositoryImpl
 import com.murerwa.rickandmortytesting.features.characters.domain.repositories.CharactersRepository
+import com.murerwa.rickandmortytesting.features.episodes.data.api.EpisodesApiClient
 import com.murerwa.rickandmortytesting.features.episodes.domain.repositories.EpisodesRepository
+import com.murerwa.rickandmortytesting.features.locations.data.api.LocationsApiClient
 import com.murerwa.rickandmortytesting.features.locations.domain.repository.LocationsRepository
 import dagger.Module
 import dagger.Provides
@@ -28,6 +31,18 @@ class RickAndMortyModule {
         retrofit.create(ApiClient::class.java)
 
     @Provides
+    fun charactersApiClient(retrofit: Retrofit): CharactersApiClient =
+        retrofit.create(CharactersApiClient::class.java)
+
+    @Provides
+    fun episodesApiClient(retrofit: Retrofit): EpisodesApiClient =
+        retrofit.create(EpisodesApiClient::class.java)
+
+    @Provides
+    fun locationsApiClient(retrofit: Retrofit): LocationsApiClient =
+        retrofit.create(LocationsApiClient::class.java)
+
+    @Provides
     fun retrofit(): Retrofit = Retrofit.Builder()
         .baseUrl(Urls.BASE_URL)
         .client(client)
@@ -36,19 +51,19 @@ class RickAndMortyModule {
 
     @Provides
     fun providesCharactersRepository(
-        apiClient: ApiClient
+        apiClient: CharactersApiClient
     ): CharactersRepository = CharactersRepositoryImpl(apiClient)
 
     @Provides
     fun providesEpisodesRepository(
-        apiClient: ApiClient
+        apiClient: EpisodesApiClient
     ): EpisodesRepository = EpisodesRepositoryImpl(apiClient)
 
     @Provides
-    fun providesIdlingResource() = idlingResource
+    fun providesLocationsRepository(
+        apiClient: LocationsApiClient
+    ): LocationsRepository = LocationsRepositoryImpl(apiClient)
 
     @Provides
-    fun providesLocationsRepository(
-        apiClient: ApiClient
-    ): LocationsRepository = LocationsRepositoryImpl(apiClient)
+    fun providesIdlingResource() = idlingResource
 }

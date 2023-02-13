@@ -3,6 +3,7 @@ package com.murerwa.rickandmortytesting.features.locations.data.repository
 import com.murerwa.rickandmortytesting.core.models.ItemsResponse
 import com.murerwa.rickandmortytesting.core.network.ApiClient
 import com.murerwa.rickandmortytesting.core.network.NetworkResult
+import com.murerwa.rickandmortytesting.features.locations.data.api.LocationsApiClient
 import com.murerwa.rickandmortytesting.features.locations.domain.model.Location
 import com.murerwa.rickandmortytesting.utils.BaseUnitTest
 import com.nhaarman.mockitokotlin2.*
@@ -13,7 +14,7 @@ import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class LocationsRepositoryImplShould: BaseUnitTest() {
-    private val apiClient = mock<ApiClient>()
+    private val apiClient = mock<LocationsApiClient>()
     private val repository = LocationsRepositoryImpl(apiClient)
     private val mockResponse = mock<ItemsResponse<Location>>()
 

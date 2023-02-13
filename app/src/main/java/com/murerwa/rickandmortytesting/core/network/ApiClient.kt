@@ -8,24 +8,4 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface ApiClient {
-    @GET(Urls.CHARACTERS)
-    suspend fun getCharacters(
-        @Query("page") page: Int = 1,
-    ): ItemsResponse<Character>
-
-    @GET("${Urls.CHARACTERS}/{id}")
-    suspend fun getCharacterDetails(
-        @Path("id") id: Int
-    ): Character
-
-    @GET(Urls.EPISODES)
-    suspend fun getEpisodes(
-        @Query("page") page: Int,
-    ): ItemsResponse<Episode>
-
-    @GET(Urls.LOCATIONS)
-    suspend fun getLocations(
-        @Query("page") page: Int,
-    ): ItemsResponse<Location>
-}
+object ApiClient {}
