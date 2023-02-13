@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface ApiClient {
     @GET(Urls.CHARACTERS)
     suspend fun getCharacters(
-        @Query("page") page: Int,
+        @Query("page") page: Int = 1,
     ): ItemsResponse<Character>
 
     @GET("${Urls.CHARACTERS}/{id}")
