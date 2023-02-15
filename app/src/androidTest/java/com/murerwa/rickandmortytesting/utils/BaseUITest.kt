@@ -7,8 +7,7 @@ import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.jakewharton.espresso.OkHttp3IdlingResource
 import com.murerwa.rickandmortytesting.MainActivity
-import com.murerwa.rickandmortytesting.core.di.idlingResource
-import okhttp3.OkHttpClient
+import com.murerwa.rickandmortytesting.core.di.client
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
@@ -21,6 +20,9 @@ import org.junit.runner.RunWith
 open class BaseUITest {
     @get:Rule
     val rule = activityScenarioRule<MainActivity>()
+
+    private val idlingResource: OkHttp3IdlingResource =
+        OkHttp3IdlingResource.create("okhttp", client)
 
 //    @Before
 //    fun setup() {
