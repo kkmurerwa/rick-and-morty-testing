@@ -22,8 +22,6 @@ class CharactersFeatureAcceptanceTest: BaseUITest() {
 
     @Test
     fun displaysCharacterList() {
-        Thread.sleep(5000)
-
         assertRecyclerViewItemCount(R.id.recycler_characters, 20)
 
         onView(allOf(withId(R.id.imageView),

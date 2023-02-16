@@ -27,8 +27,6 @@ class EpisodesFeatureAcceptanceTest: BaseUITest() {
     fun displaysEpisodeList() {
         navigateToEpisodesScreen()
 
-        Thread.sleep(5000)
-
         onView(allOf(withId(R.id.text_episode_title),
             isDescendantOfA(nthChildOf(withId(R.id.recycler_episodes), 0))))
             .check(matches(withText("Pilot")))

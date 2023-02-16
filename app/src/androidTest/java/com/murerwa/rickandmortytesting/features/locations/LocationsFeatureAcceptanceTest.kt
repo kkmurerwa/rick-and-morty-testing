@@ -29,8 +29,6 @@ class LocationsFeatureAcceptanceTest: BaseUITest() {
     fun displaysLocationList() {
         navigateToLocationsScreen()
 
-        Thread.sleep(5000)
-
         onView(allOf(withId(R.id.text_location_name),
                 isDescendantOfA(nthChildOf(withId(R.id.recycler_locations), 0))))
             .check(matches(withText("Earth (C-137)")))

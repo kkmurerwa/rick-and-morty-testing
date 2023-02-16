@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.jakewharton.espresso.OkHttp3IdlingResource
 import com.murerwa.rickandmortytesting.MainActivity
 import com.murerwa.rickandmortytesting.core.di.client
 import org.hamcrest.Description
@@ -21,18 +20,18 @@ open class BaseUITest {
     @get:Rule
     val rule = activityScenarioRule<MainActivity>()
 
-    private val idlingResource: OkHttp3IdlingResource =
+    private val idlingResource =
         OkHttp3IdlingResource.create("okhttp", client)
 
-//    @Before
-//    fun setup() {
-//        IdlingRegistry.getInstance().register(idlingResource)
-//    }
-//
-//    @After
-//    fun tearDown() {
-//        IdlingRegistry.getInstance().unregister(idlingResource)
-//    }
+    @Before
+    fun setup() {
+        IdlingRegistry.getInstance().register(idlingResource)
+    }
+
+    @After
+    fun tearDown() {
+        IdlingRegistry.getInstance().unregister(idlingResource)
+    }
 
     fun nthChildOf(parentMatcher: Matcher<View>, childPosition: Int): Matcher<View> {
         return object : TypeSafeMatcher<View>() {
