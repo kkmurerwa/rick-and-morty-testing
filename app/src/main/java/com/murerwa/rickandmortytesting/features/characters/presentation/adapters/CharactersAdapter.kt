@@ -1,4 +1,4 @@
-package com.murerwa.rickandmortytesting.features.characters.presentation
+package com.murerwa.rickandmortytesting.features.characters.presentation.adapters
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -47,6 +47,10 @@ class CharactersAdapter(
                 }
 
                 textCharacterLivingStatus.setTextColor(color)
+
+                root.setOnClickListener {
+                    onClickListener(character)
+                }
             }
         }
     }

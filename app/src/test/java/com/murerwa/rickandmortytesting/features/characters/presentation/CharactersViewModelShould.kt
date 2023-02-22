@@ -8,6 +8,7 @@ import com.murerwa.rickandmortytesting.core.network.NetworkResult
 import com.murerwa.rickandmortytesting.core.network.UIState
 import com.murerwa.rickandmortytesting.features.characters.domain.model.Character
 import com.murerwa.rickandmortytesting.features.characters.domain.repositories.CharactersRepository
+import com.murerwa.rickandmortytesting.features.characters.presentation.viewmodels.CharactersViewModel
 import com.murerwa.rickandmortytesting.utils.BaseUnitTest
 import com.murerwa.rickandmortytesting.utils.getValueForTest
 import com.nhaarman.mockitokotlin2.any

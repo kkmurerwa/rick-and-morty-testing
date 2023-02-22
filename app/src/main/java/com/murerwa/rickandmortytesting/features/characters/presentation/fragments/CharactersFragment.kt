@@ -1,11 +1,14 @@
-package com.murerwa.rickandmortytesting.features.characters.presentation
+package com.murerwa.rickandmortytesting.features.characters.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.murerwa.rickandmortytesting.R
 import com.murerwa.rickandmortytesting.databinding.FragmentCharactersBinding
 import com.murerwa.rickandmortytesting.core.network.UIState
+import com.murerwa.rickandmortytesting.features.characters.presentation.viewmodels.CharactersViewModel
+import com.murerwa.rickandmortytesting.features.characters.presentation.adapters.CharactersAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
@@ -44,6 +47,11 @@ class CharactersFragment : Fragment(R.layout.fragment_characters) {
                         characters = characters,
                         onClickListener = { character ->
                             // Navigate to details fragment
+                            findNavController().navigate(
+                                CharactersFragmentDirections.charactersToCharacterDetails(
+                                    character.id
+                                )
+                            )
                         }
                     )
                 }

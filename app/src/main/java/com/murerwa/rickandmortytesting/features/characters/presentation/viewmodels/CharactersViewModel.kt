@@ -1,4 +1,4 @@
-package com.murerwa.rickandmortytesting.features.characters.presentation
+package com.murerwa.rickandmortytesting.features.characters.presentation.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
