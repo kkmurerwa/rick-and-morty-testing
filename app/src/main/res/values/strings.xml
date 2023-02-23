@@ -12,4 +12,11 @@
     <string name="error_verify_otp">There was an error verifying OTP, please try again</string>
     <string name="network_error_no_items_found">Sorry. We could not find the requested data</string>
     <string name="network_error_request_not_completed">Sorry. We could not complete your request</string>
+    <string name="status">Status:</string>
+    <string name="species">Species:</string>
+    <string name="gender">Gender:</string>
+    <string name="origin">Origin:</string>
+    <string name="location">Location:</string>
+    <string name="created_on">Create On:</string>
+    <string name="episodes_count">Episodes Count:</string>
 </resources>

@@ -66,6 +66,13 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
     private fun setCharacterDetails(character: Character) {
         binding.apply {
             textViewCharacterName.text = character.name
+            textViewCharacterStatus.text = character.status
+            textViewCharacterSpecies.text = character.species
+            textViewCharacterEpisodes.text = character.episode.size.toString()
+            textViewCharacterGender.text = character.gender
+            textViewCharacterOrigin.text = character.origin.name
+            textViewCharacterLocation.text = character.location.name
+            textViewCharacterCreatedDate.text = character.created
 
             Glide.with(this@CharacterDetailsFragment)
                 .load(character.image)
