@@ -1,14 +1,13 @@
-package com.murerwa.rickandmortytesting.features.characters.presentation
+package com.murerwa.rickandmortytesting.features.characters.presentation.viewmodel
 
 import android.app.Application
 import com.murerwa.rickandmortytesting.R
 import com.murerwa.rickandmortytesting.core.models.Info
-import com.murerwa.rickandmortytesting.core.models.ItemsResponse
 import com.murerwa.rickandmortytesting.core.network.NetworkResult
 import com.murerwa.rickandmortytesting.core.network.UIState
 import com.murerwa.rickandmortytesting.features.characters.domain.model.Character
 import com.murerwa.rickandmortytesting.features.characters.domain.repositories.CharactersRepository
-import com.murerwa.rickandmortytesting.features.characters.presentation.viewmodels.CharactersViewModel
+import com.murerwa.rickandmortytesting.features.characters.presentation.viewmodels.CharactersDetailsViewModel
 import com.murerwa.rickandmortytesting.utils.BaseUnitTest
 import com.murerwa.rickandmortytesting.utils.getValueForTest
 import com.nhaarman.mockitokotlin2.any
@@ -17,18 +16,18 @@ import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
+import org.junit.Assert.*
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class CharactersViewModelShould: BaseUnitTest() {
+class CharactersDetailsViewModelShould: BaseUnitTest() {
     private val app = mock<Application>()
     private val repository = mock<CharactersRepository>()
     private val mockInfo = mock<Info>()
-    private val mockCharactersList = listOf<Character>(mock())
+    private val mockCharacter = mock<Character>()
 
     private val mockNetworkResponseSuccess =
-        NetworkResult.Success(ItemsResponse(mockInfo, mockCharactersList))
+        NetworkResult.Success(mockCharacter)
 
     private val mockNetworkResponseFailure = NetworkResult.Failure(
         isNetworkError = false,
@@ -37,44 +36,50 @@ class CharactersViewModelShould: BaseUnitTest() {
     )
 
     private val mockLiveDataResponseSuccess =
-        UIState.Success(ItemsResponse(mockInfo, mockCharactersList))
+        UIState.Success(mockCharacter)
 
     private val mockLiveDataResponseFailure =
         UIState.Error("test", false)
 
     @Test
-    fun getCharacters() = runTest {
+    fun getCharacterDetails() = runTest {
         val viewModel = mockSuccessfulCase()
 
-        viewModel.getCharacters()
+        viewModel.getCharacterDetails(1)
 
-        assertEquals(mockLiveDataResponseSuccess, viewModel.charactersResponse.getValueForTest())
+        assertEquals(mockLiveDataResponseSuccess, viewModel.characterDetailsResponse.getValueForTest())
     }
 
     @Test
-    fun getCharactersError() = runTest {
+    fun getCharacterDetailsError() = runTest {
         val viewModel = mockErrorCase()
 
-        viewModel.getCharacters()
+        viewModel.getCharacterDetails(1)
 
-        assertEquals(mockLiveDataResponseFailure, viewModel.charactersResponse.getValueForTest())
+        assertEquals(mockLiveDataResponseFailure, viewModel.characterDetailsResponse.getValueForTest())
     }
 
-    private fun mockSuccessfulCase(): CharactersViewModel {
+    private fun mockSuccessfulCase(): CharactersDetailsViewModel {
         runBlocking {
-            whenever(app.getString(R.string.network_error_no_items_found)).thenReturn("test")
-            whenever(repository.getCharacters(any())).thenReturn(mockNetworkResponseSuccess)
+            whenever(app.getString(R.string.network_error_no_items_found))
+                .thenReturn("test")
+
+            whenever(repository.getCharacterDetails(any()))
+                .thenReturn(mockNetworkResponseSuccess)
         }
 
-        return CharactersViewModel(app, repository)
+        return CharactersDetailsViewModel(app, repository)
     }
 
-    private fun mockErrorCase(): CharactersViewModel {
+    private fun mockErrorCase(): CharactersDetailsViewModel {
         runBlocking {
-            whenever(app.getString(R.string.network_error_no_items_found)).thenReturn("test")
-            whenever(repository.getCharacters(any())).thenReturn(mockNetworkResponseFailure)
+            whenever(app.getString(R.string.network_error_no_items_found))
+                .thenReturn("test")
+
+            whenever(repository.getCharacterDetails(any()))
+                .thenReturn(mockNetworkResponseFailure)
         }
 
-        return CharactersViewModel(app, repository)
+        return CharactersDetailsViewModel(app, repository)
     }
 }
