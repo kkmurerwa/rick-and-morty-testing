@@ -19,13 +19,13 @@
 
     <fragment
         android:id="@+id/locations_fragment"
-        android:name="com.murerwa.rickandmortytesting.features.locations.presentation.LocationsFragment"
+        android:name="com.murerwa.rickandmortytesting.features.locations.presentation.fragments.LocationsFragment"
         android:label="fragment_locations"
         tools:layout="@layout/fragment_locations" />
 
     <fragment
         android:id="@+id/episodes_fragment"
-        android:name="com.murerwa.rickandmortytesting.features.episodes.presentation.EpisodesFragment"
+        android:name="com.murerwa.rickandmortytesting.features.episodes.presentation.fragments.EpisodesFragment"
         android:label="fragment_episodes"
         tools:layout="@layout/fragment_episodes" />
 

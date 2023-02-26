@@ -1,44 +1,46 @@
-package com.murerwa.rickandmortytesting.features.locations.presentation
+package com.murerwa.rickandmortytesting.features.episodes.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.murerwa.rickandmortytesting.R
 import com.murerwa.rickandmortytesting.core.network.UIState
-import com.murerwa.rickandmortytesting.databinding.FragmentLocationsBinding
+import com.murerwa.rickandmortytesting.databinding.FragmentEpisodesBinding
+import com.murerwa.rickandmortytesting.features.episodes.presentation.viewmodels.EpisodesViewModel
+import com.murerwa.rickandmortytesting.features.episodes.presentation.adapters.EpisodesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class LocationsFragment : Fragment(R.layout.fragment_locations) {
-    private var _binding: FragmentLocationsBinding? = null
+class EpisodesFragment : Fragment(R.layout.fragment_episodes) {
+    private var _binding: FragmentEpisodesBinding? = null
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var viewModel: LocationsViewModel
+    lateinit var viewModel: EpisodesViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        _binding = FragmentLocationsBinding.bind(view)
+        _binding = FragmentEpisodesBinding.bind(view)
 
         val toolbar = binding.toolbar.root
-        toolbar.title = "Locations"
+        toolbar.title = "Episodes"
 
-        fetchLocations()
+        fetchEpisodes()
     }
 
-    private fun fetchLocations() {
-        viewModel.getLocations()
+    private fun fetchEpisodes() {
+        viewModel.getEpisodes()
 
-        viewModel.locationsResponse.observe(viewLifecycleOwner) { response ->
+        viewModel.episodesResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is UIState.Loading -> {}
                 is UIState.Success -> {
-                    val locations = response.value.results
+                    val episodes = response.value.results
 
-                    binding.recyclerLocations.adapter = LocationsAdapter(
-                        locations = locations,
+                    binding.recyclerEpisodes.adapter = EpisodesAdapter(
+                        episodes = episodes,
                         onClickListener = {
                             // Navigate to details fragment
                         }
