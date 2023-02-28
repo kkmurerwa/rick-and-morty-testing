@@ -3,6 +3,7 @@ package com.murerwa.rickandmortytesting.features.locations.presentation.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.murerwa.rickandmortytesting.R
 import com.murerwa.rickandmortytesting.core.network.UIState
 import com.murerwa.rickandmortytesting.databinding.FragmentLocationsBinding
@@ -42,7 +43,9 @@ class LocationsFragment : Fragment(R.layout.fragment_locations) {
                     binding.recyclerLocations.adapter = LocationsAdapter(
                         locations = locations,
                         onClickListener = {
-                            // Navigate to details fragment
+                            findNavController().navigate(
+                                LocationsFragmentDirections.locationsToLocationDetails(it.id)
+                            )
                         }
                     )
                 }
