@@ -25,10 +25,13 @@ class LocationsViewModelShould: BaseUnitTest() {
     private val app = mock<Application>()
     private val repository = mock<LocationsRepository>()
     private val mockInfo = mock<Info>()
+    private val mockLocation = mock<Location>()
     private val mockCharactersList = listOf<Location>(mock())
 
     private val mockNetworkResponseSuccess =
         NetworkResult.Success(ItemsResponse(mockInfo, mockCharactersList))
+    private val mockNetworkResponseLocationDetailsSuccess =
+        NetworkResult.Success(mockLocation)
 
     private val mockNetworkResponseFailure = NetworkResult.Failure(
         isNetworkError = false,
@@ -38,6 +41,8 @@ class LocationsViewModelShould: BaseUnitTest() {
 
     private val mockLiveDataResponseSuccess =
         UIState.Success(ItemsResponse(mockInfo, mockCharactersList))
+    private val mockLiveDataLocationSuccess =
+        UIState.Success(mockLocation)
 
     private val mockLiveDataResponseFailure =
         UIState.Error("test", false)
@@ -60,10 +65,29 @@ class LocationsViewModelShould: BaseUnitTest() {
         assertEquals(mockLiveDataResponseFailure, viewModel.locationsResponse.getValueForTest())
     }
 
+    @Test
+    fun getLocationDetailsSuccess() = runTest {
+        val viewModel = mockSuccessfulCase()
+
+        viewModel.getLocationDetails(1)
+
+        assertEquals(mockLiveDataLocationSuccess, viewModel.locationDetailsResponse.getValueForTest())
+    }
+
+    @Test
+    fun getLocationDetailsFailure() = runTest {
+        val viewModel = mockErrorCase()
+
+        viewModel.getLocationDetails(1)
+
+        assertEquals(mockLiveDataResponseFailure, viewModel.locationDetailsResponse.getValueForTest())
+    }
+
     private fun mockSuccessfulCase(): LocationsViewModel {
         runBlocking {
             whenever(app.getString(R.string.network_error_no_items_found)).thenReturn("test")
             whenever(repository.getLocations(any())).thenReturn(mockNetworkResponseSuccess)
+            whenever(repository.getLocationDetails(any())).thenReturn(mockNetworkResponseLocationDetailsSuccess)
         }
 
         return LocationsViewModel(app, repository)
@@ -73,6 +97,7 @@ class LocationsViewModelShould: BaseUnitTest() {
         runBlocking {
             whenever(app.getString(R.string.network_error_no_items_found)).thenReturn("test")
             whenever(repository.getLocations(any())).thenReturn(mockNetworkResponseFailure)
+            whenever(repository.getLocationDetails(any())).thenReturn(mockNetworkResponseFailure)
         }
 
         return LocationsViewModel(app, repository)

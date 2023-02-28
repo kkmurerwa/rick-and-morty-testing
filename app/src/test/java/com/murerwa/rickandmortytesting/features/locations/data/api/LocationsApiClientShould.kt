@@ -65,6 +65,27 @@ class LocationsApiClientShould: BaseUnitTest() {
         assertEquals(tExpectedError.isNetworkError, actualResponse.isNetworkError)
     }
 
+    @Test
+    fun returnLocationIfGetLocationDetailsSuccess() = runTest {
+        val expected = tLocation
+
+        setSuccessWebserverResponse(expected)
+
+        val actualResponse =
+            locationsRepository.getLocationDetails(1) as NetworkResult.Success
+        assertEquals(NetworkResult.Success(expected), actualResponse)
+    }
+
+    @Test
+    fun returnErrorIfGetLocationDetailsFailed() = runTest {
+        setFailureWebserverResponse(tExpectedError)
+
+        val actualResponse =
+            locationsRepository.getLocationDetails(1) as NetworkResult.Failure
+        assertEquals(tExpectedError.errorCode, actualResponse.errorCode)
+        assertEquals(tExpectedError.isNetworkError, actualResponse.isNetworkError)
+    }
+
     private fun setSuccessWebserverResponse(expected: Any) {
         val response = MockResponse()
             .setResponseCode(HttpURLConnection.HTTP_OK)

@@ -15,6 +15,7 @@ import org.junit.Test
 class LocationsRepositoryImplShould: BaseUnitTest() {
     private val apiClient = mock<LocationsApiClient>()
     private val repository = LocationsRepositoryImpl(apiClient)
+    private val mockLocation = mock<Location>()
     private val mockResponse = mock<ItemsResponse<Location>>()
 
     @Test
@@ -33,5 +34,23 @@ class LocationsRepositoryImplShould: BaseUnitTest() {
         val actual = repository.getLocations(1)
 
         assertEquals(NetworkResult.Success(mockResponse), actual)
+    }
+
+    @Test
+    fun invokeApiClientGetLocationDetails() = runTest {
+        whenever(apiClient.getLocationDetails(any())).thenReturn(mockLocation)
+
+        repository.getLocationDetails(1)
+
+        verify(apiClient, times(1)).getLocationDetails(1)
+    }
+
+    @Test
+    fun getLocationDetailsFromRepositoryAsNetworkResultInstance() = runTest {
+        whenever(apiClient.getLocationDetails(any())).thenReturn(mockLocation)
+
+        val actual = repository.getLocationDetails(1)
+
+        assertEquals(NetworkResult.Success(mockLocation), actual)
     }
 }
