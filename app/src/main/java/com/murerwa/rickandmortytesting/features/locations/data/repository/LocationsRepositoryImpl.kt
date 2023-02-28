@@ -14,4 +14,8 @@ class LocationsRepositoryImpl @Inject constructor (
     override suspend fun getLocations(page: Int): NetworkResult<ItemsResponse<Location>> {
         return safeApiCall { apiClient.getLocations(page) }
     }
+
+    override suspend fun getLocationDetails(id: Int): NetworkResult<Location> {
+        return safeApiCall { apiClient.getLocationDetails(id) }
+    }
 }

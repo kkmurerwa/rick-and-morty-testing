@@ -18,6 +18,7 @@ class LocationsViewModel @Inject constructor(
     private val repository: LocationsRepository
 ): ViewModel() {
     val locationsResponse = MutableLiveData<UIState<ItemsResponse<Location>>>(UIState.Loading)
+    val locationDetailsResponse = MutableLiveData<UIState<Location>>(UIState.Loading)
 
     fun getLocations() = viewModelScope.launch {
         locationsResponse.value = UIState.Loading
@@ -29,5 +30,17 @@ class LocationsViewModel @Inject constructor(
         )
 
         locationsResponse.value = uiState
+    }
+
+    fun getLocationDetails(id: Int) = viewModelScope.launch {
+        locationDetailsResponse.value = UIState.Loading
+
+        val uiState = convertToUIState(
+            response = repository.getLocationDetails(id),
+            app = app,
+            errorMessage = app.getString(R.string.network_error_no_items_found)
+        )
+
+        locationDetailsResponse.value = uiState
     }
 }

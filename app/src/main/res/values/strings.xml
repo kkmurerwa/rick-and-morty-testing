@@ -19,4 +19,7 @@
     <string name="location">Location:</string>
     <string name="created_on">Create On:</string>
     <string name="episodes_count">Episodes Count:</string>
+    <string name="location_type">Location Type:</string>
+    <string name="location_dimension">Location Dimension:</string>
+    <string name="residents">Residents:</string>
 </resources>

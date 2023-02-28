@@ -34,7 +34,6 @@ class CharacterDetailsFragment : Fragment(R.layout.fragment_character_details) {
         _binding = FragmentCharacterDetailsBinding.bind(view)
 
         val toolbar = binding.toolbar.root
-//        toolbar.title = "Character Details"
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()

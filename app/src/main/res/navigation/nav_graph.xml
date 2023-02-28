@@ -21,7 +21,13 @@
         android:id="@+id/locations_fragment"
         android:name="com.murerwa.rickandmortytesting.features.locations.presentation.fragments.LocationsFragment"
         android:label="fragment_locations"
-        tools:layout="@layout/fragment_locations" />
+        tools:layout="@layout/fragment_locations" >
+
+        <action
+            android:id="@+id/locations_to_locationDetails"
+            app:destination="@id/locationDetailsFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/episodes_fragment"
@@ -35,9 +41,20 @@
         android:label="CharacterDetailsFragment"
         tools:layout="@layout/fragment_character_details" >
 
-
         <argument
             android:name="characterId"
             app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/locationDetailsFragment"
+        android:name="com.murerwa.rickandmortytesting.features.locations.presentation.fragments.LocationDetailsFragment"
+        android:label="LocationDetailsFragment"
+        tools:layout="@layout/fragment_location_details" >
+
+        <argument
+            android:name="locationId"
+            app:argType="integer" />
+
     </fragment>
 </navigation>

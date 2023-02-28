@@ -8,4 +8,6 @@ interface LocationsRepository {
 
     suspend fun getLocations(page: Int): NetworkResult<ItemsResponse<Location>>
 
+    suspend fun getLocationDetails(id: Int): NetworkResult<Location>
+
 }
