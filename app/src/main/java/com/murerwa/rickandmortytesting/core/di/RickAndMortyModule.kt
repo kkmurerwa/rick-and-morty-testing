@@ -19,7 +19,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val client = OkHttpClient()
-//val idlingResource = OkHttp3IdlingResource.create("okhttp", client)
 
 @Module
 @InstallIn(FragmentComponent::class)
@@ -57,7 +56,4 @@ class RickAndMortyModule {
     fun providesLocationsRepository(
         apiClient: LocationsApiClient
     ): LocationsRepository = LocationsRepositoryImpl(apiClient)
-
-//    @Provides
-//    fun providesIdlingResource() = idlingResource
 }
